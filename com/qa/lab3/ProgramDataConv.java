@@ -15,7 +15,7 @@ public class ProgramDataConv {
         String mainCourse = getString("What main dish would you like(Fish, Burgers or Veg)?");
 
         int potatoes = utils.getInt("How many Roast Potatoes would you like?");
-        int sprouts = getInt("How many Brussel Sprouts would you like?");
+        int sprouts = utils.getInt("How many Brussel Sprouts would you like?");
 
         System.out.println("Hello, your lunch is " + mainCourse + " with " + potatoes + " Roast Potatoes and " + sprouts + " Brussel Sprouts.");
     }
