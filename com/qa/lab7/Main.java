@@ -7,7 +7,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         boolean running = true;
 
-        Currency usd = new Currency("USD", 1.27);
+        Currency usd = new Currency("USD", 1.35);
         Currency eur = new Currency("EUR", 1.15);
 
         System.out.println("=== AIRPORT CURRENCY EXCHANGE ===");
