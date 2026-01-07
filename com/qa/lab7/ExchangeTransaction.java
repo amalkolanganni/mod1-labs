@@ -24,17 +24,19 @@ public class ExchangeTransaction {
 
     public void processTransaction() {
 
-        double afterFee = gbpAmount - calculateServiceFee();
+        double fee = calculateServiceFee();
+        double amountAfterFee = gbpAmount - fee;
+        
+        double tax = calculateTax(amountAfterFee);
+        double amountAfterTax = amountAfterFee - tax;
 
-        double afterTax = afterFee - calculateTax(afterFee);
-
-        double finalAmount = currency.convertToGBP(afterTax);
+        double finalAmount = currency.convertToGBP(amountAfterTax);
 
         int rounded = (int) finalAmount;
 
         String receipt = String.format(
-            "| Customer: %-10s | Original Amount: £%.2f | After Fee: £%.2f | After Tax: £%.2f | Final Amount: %d %s |",
-            customer.getName(), gbpAmount, afterFee, afterTax, rounded, currency.getName()
+            "| Customer: %-10s | Amount: £%.2f | Fee: £%.2f | Tax: £%.2f | Final Amount: %d %s |",
+            customer.getName(), gbpAmount, fee, tax, rounded, currency.getName()
         );
 
         System.out.println(receipt);
