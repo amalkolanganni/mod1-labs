@@ -1,28 +1,20 @@
 package com.qa.lab12;
 
-public class Car extends Vehicle {
+public class Car extends Vehicle implements Washable {
     private boolean isConvertible;
 
-    public Car(int id, String manufacturer, String model, int topSpeed, boolean isConvertible) {
-        super(id, manufacturer, model, topSpeed);
+    public Car(int id, String manufacturer, String model, boolean isConvertible) {
+        super(id, manufacturer, model);
         this.isConvertible = isConvertible;
     }
 
-    public boolean isConvertible() { return isConvertible; }
-
     @Override
-    public void move() {
-        System.out.println("The car drives smoothly on the road.");
+    public double calcBill() {
+        return isConvertible ? 100.00 : 50.00;
     }
 
     @Override
-    public void makeNoise() {
-        System.out.println("Beep Beep!");
-    }
-
-    @Override
-    public String toString() {
-        String roofType = isConvertible ? "Convertible" : "Hardtop";
-        return super.toString() + " | Type: Car (" + roofType + ")";
+    public void clean() {
+        System.out.println("Car is going through the car wash... Sparkly!");
     }
 }

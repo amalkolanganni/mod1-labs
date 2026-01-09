@@ -4,35 +4,27 @@ public class Runner {
     public static void main(String[] args) {
         Garage garage = new Garage();
 
-        Vehicle v1 = new Car(101, "Ford", "Mustang", 150, true);
-        Vehicle v2 = new Truck(102, "Volvo", "FH16", 90, 20.5);
-        Vehicle v3 = new Motorcycle(103, "Ducati", "Panigale", 180, false);
-        Vehicle v4 = new Car(104, "Toyota", "Prius", 100, false);
+        Car car = new Car(1, "Ford", "Focus", false);     // Bill: 50
+        Truck truck = new Truck(2, "Volvo", "Rig", 10.0); // Bill: 200 + 100 = 300
+        Motorcycle bike = new Motorcycle(3, "Honda", "CBR"); // Bill: 30
 
-        garage.addVehicle(v1);
-        garage.addVehicle(v2);
-        garage.addVehicle(v3);
-        garage.addVehicle(v4);
+        garage.addVehicle(car);
+        garage.addVehicle(truck);
+        garage.addVehicle(bike);
 
-        garage.printAll();
+        System.out.println("--- Testing Interfaces ---");
+        car.refuel();
+        car.clean();
+        truck.refuel();
 
-        System.out.println("\n--- Testing Noises ---");
-        v1.makeNoise();
-        v2.makeNoise();
-        v3.makeNoise();
+        System.out.println("\n--- Testing Bills ---");
+        garage.printBillForVehicle(1);
+        garage.printBillForVehicle(2);
 
-        System.out.println("\n--- Testing Search ---");
-        try {
-            Vehicle found = garage.findVehicleById(102);
-            System.out.println("Found: " + found.getManufacturer());
+        System.out.println("\nTotal Garage Value: £" + garage.calculateTotalBill());
 
-            System.out.println("Searching for invalid ID...");
-            garage.findVehicleById(999);
-
-        } catch (VehicleNotFoundException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-
-        garage.printVehiclesByType(Car.class);
+        System.out.println("\n--- Testing Removal ---");
+        garage.removeVehicleById(1);
+        System.out.println("New Total: £" + garage.calculateTotalBill());
     }
 }

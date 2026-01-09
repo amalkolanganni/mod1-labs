@@ -8,31 +8,33 @@ public class Garage {
 
     public void addVehicle(Vehicle v) {
         vehicles.add(v);
-        System.out.println("Added vehicle: " + v.getId());
     }
 
-    public Vehicle findVehicleById(int id) throws VehicleNotFoundException {
+    public double calculateTotalBill() {
+        double total = 0;
+        for (Vehicle v : vehicles) {
+            total += v.calcBill();
+        }
+        return total;
+    }
+
+    public void removeVehicleById(int id) {
+        boolean removed = vehicles.removeIf(v -> v.getId() == id);
+        
+        if (removed) {
+            System.out.println("Vehicle " + id + " removed from Garage.");
+        } else {
+            System.out.println("Could not find Vehicle " + id + " to remove.");
+        }
+    }
+
+    public void printBillForVehicle(int id) {
         for (Vehicle v : vehicles) {
             if (v.getId() == id) {
-                return v;
+                System.out.println("Bill for Vehicle " + id + ": £" + v.calcBill());
+                return;
             }
         }
-        throw new VehicleNotFoundException("Vehicle with ID " + id + " not found in Garage.");
-    }
-
-    public void printVehiclesByType(Class<?> type) {
-        System.out.println("\n--- Searching for " + type.getSimpleName() + " ---");
-        for (Vehicle v : vehicles) {
-            if (type.isInstance(v)) {
-                System.out.println(v);
-            }
-        }
-    }
-    
-    public void printAll() {
-        System.out.println("\n--- Garage Contents ---");
-        for(Vehicle v : vehicles) {
-            System.out.println(v);
-        }
+        System.out.println("Vehicle not found.");
     }
 }
