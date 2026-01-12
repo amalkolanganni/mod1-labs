@@ -4,9 +4,9 @@ public class Runner {
     public static void main(String[] args) {
         Garage garage = new Garage();
 
-        Car car = new Car(1, "Ford", "Focus", false);     // Bill: 50
-        Truck truck = new Truck(2, "Volvo", "Rig", 10.0); // Bill: 200 + 100 = 300
-        Motorcycle bike = new Motorcycle(3, "Honda", "CBR"); // Bill: 30
+        Car car = new Car(1, "Ford", "Focus", false);
+        Truck truck = new Truck(2, "Volvo", "Rig", 10.0);
+        Motorcycle bike = new Motorcycle(3, "Honda", "CBR");
 
         garage.addVehicle(car);
         garage.addVehicle(truck);
